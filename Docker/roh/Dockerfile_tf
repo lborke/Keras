@@ -1,0 +1,11 @@
+
+FROM tensorflow/tensorflow:latest-py3-jupyter
+
+# Install Python dependencies
+RUN pip install matplotlib pyyaml
+
+# COPY python scripts
+COPY tools /keras_mnist_f/tools
+
+# Go to workdir
+WORKDIR /keras_mnist_f

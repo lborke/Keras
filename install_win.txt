@@ -1,0 +1,44 @@
+
+pip install tensorflow
+
+pip show tensorflow
+
+Name: tensorflow
+Version: 1.14.0
+Summary: TensorFlow is an open source machine learning framework for everyone.
+Home-page: https://www.tensorflow.org/
+Author: Google Inc.
+Author-email: packages@tensorflow.org
+License: Apache 2.0
+Location: c:\users\borke\appdata\local\programs\python\python37\lib\site-packages
+Requires: tensorboard, wrapt, astor, termcolor, absl-py, tensorflow-estimator, keras-applications, numpy, grpcio, wheel, six, protobuf, google-pasta, gast, keras-preprocessing
+
+
+pip install keras
+
+pip show keras
+
+Name: Keras
+Version: 2.2.4
+Summary: Deep Learning for humans
+Home-page: https://github.com/keras-team/keras
+Author: Francois Chollet
+Author-email: francois.chollet@gmail.com
+License: MIT
+Location: c:\users\borke\appdata\local\programs\python\python37\lib\site-packages
+Requires: h5py, scipy, six, numpy, keras-preprocessing, keras-applications, pyyaml
+
+
+pip install pillow
+
+pip show pillow
+
+Name: Pillow
+Version: 6.1.0
+Summary: Python Imaging Library (Fork)
+Home-page: http://python-pillow.org
+Author: Alex Clark (Fork Author)
+Author-email: aclark@aclark.net
+License: UNKNOWN
+Location: c:\users\borke\appdata\local\programs\python\python37\lib\site-packages
+Requires:

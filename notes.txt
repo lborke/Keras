@@ -1,0 +1,24 @@
+
+# Wi
+https://towardsdatascience.com/keras-transfer-learning-for-beginners-6c9b8b7143e
+https://github.com/aditya9898/transfer-learning/blob/master/transfer-learning.ipynb
+
+# TF
+https://www.tensorflow.org/install/source_windows
+https://www.tensorflow.org/install/docker
+
+# Keras
+https://github.com/keras-team/keras
+https://github.com/keras-team/keras/tree/master/docker
+
+https://keras.io/models/about-keras-models/
+https://keras.io/layers/core/
+https://keras.io/preprocessing/image/
+
+# Nvidia
+https://github.com/NVIDIA/nvidia-docker/blob/master/README.md#quickstart
+
+
+##
+file:///D:/GitHub/_SB/Docker_SB/containers/frameworks/Keras
+file:///D:/GitHub/_SB/Docker_2019_SB/images/ml_frameworks/Keras
