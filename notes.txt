@@ -2,6 +2,7 @@
 # Wi
 https://towardsdatascience.com/keras-transfer-learning-for-beginners-6c9b8b7143e
 https://github.com/aditya9898/transfer-learning/blob/master/transfer-learning.ipynb
+https://medium.com/@vijayabhaskar96/tutorial-image-classification-with-keras-flow-from-directory-and-generators-95f75ebe5720
 
 # TF
 https://www.tensorflow.org/install/source_windows

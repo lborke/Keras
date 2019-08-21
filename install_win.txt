@@ -42,3 +42,18 @@ Author-email: aclark@aclark.net
 License: UNKNOWN
 Location: c:\users\borke\appdata\local\programs\python\python37\lib\site-packages
 Requires:
+
+
+pip install pandas
+
+pip show pandas
+
+Name: pandas
+Version: 0.25.0
+Summary: Powerful data structures for data analysis, time series, and statistics
+Home-page: http://pandas.pydata.org
+Author: None
+Author-email: None
+License: BSD
+Location: c:\users\borke\appdata\local\programs\python\python37\lib\site-packages
+Requires: pytz, numpy, python-dateutil
