@@ -23,3 +23,24 @@ https://github.com/NVIDIA/nvidia-docker/blob/master/README.md#quickstart
 ##
 file:///D:/GitHub/_SB/Docker_SB/containers/frameworks/Keras
 file:///D:/GitHub/_SB/Docker_2019_SB/images/ml_frameworks/Keras
+
+
+##
+https://towardsdatascience.com/a-keras-pipeline-for-image-segmentation-part-1-6515a421157d
+https://gist.github.com/rwiddhic96
+https://github.com/zhixuhao/unet/blob/master/model.py
+https://github.com/aurora95/Keras-FCN/blob/master/models.py
+
+https://towardsdatascience.com/u-net-b229b32b4a71
+https://www.kaggle.com/hsankesara/unet-image-segmentation
+https://github.com/zhixuhao/unet
+
+# >
+https://divamgupta.com/image-segmentation/2019/06/06/deep-learning-semantic-segmentation-keras.html
+https://github.com/divamgupta/image-segmentation-keras
+
+https://www.depends-on-the-definition.com/unet-keras-segmenting-images/
+https://towardsdatascience.com/understanding-semantic-segmentation-with-unet-6be4f42d4b47
+
+https://androidkt.com/tensorflow-keras-unet-for-image-image-segmentation/
+
