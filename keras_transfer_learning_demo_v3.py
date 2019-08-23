@@ -49,8 +49,9 @@ for layer in model.layers[87:]:
 
 train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input) #included in our dependencies
 
-# train_generator=train_datagen.flow_from_directory('./train/', # this is where you specify the path to the main data folder
-train_generator=train_datagen.flow_from_directory('D:/TEMP/alltours/BigSetFull', # this is where you specify the path to the main data folder
+train_generator=train_datagen.flow_from_directory('./train/', # this is where you specify the path to the main data folder
+# train_generator=train_datagen.flow_from_directory('D:/TEMP/alltours/BigSetFull', # this is where you specify the path to the main data folder
+# train_generator=train_datagen.flow_from_directory('/storage/train/', # this is where you specify the path to the main data folder
                                                  target_size=(224,224),
                                                  color_mode='rgb',
                                                  batch_size=32,
@@ -65,9 +66,15 @@ model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accurac
 
 step_size_train = train_generator.n//train_generator.batch_size
 
+
+# Start Training !
 model.fit_generator(generator=train_generator,
                    steps_per_epoch=step_size_train,
-                   epochs = 10)
+                   # use_multiprocessing=True,
+                   # workers = 8,
+                   # epochs = 10)
+                   epochs = 30)
+                   # epochs = 100)
 
 
 
@@ -152,29 +159,5 @@ test_loss, test_acc = model.evaluate(test_images, test_labels)
 predictions_array = model.predict(img)
 
 
-
-### Stats
-## alle ~ 10.000 Bilder
-Epoch 1/10
-299/299 [==============================] - 414s 1s/step - loss: 0.4908 - acc: 0.7925
-Epoch 2/10
-299/299 [==============================] - 405s 1s/step - loss: 0.3991 - acc: 0.8270
-Epoch 3/10
-299/299 [==============================] - 408s 1s/step - loss: 0.3738 - acc: 0.8401
-Epoch 4/10
-299/299 [==============================] - 408s 1s/step - loss: 0.3643 - acc: 0.8431
-Epoch 5/10
-299/299 [==============================] - 406s 1s/step - loss: 0.3357 - acc: 0.8522
-Epoch 6/10
-299/299 [==============================] - 405s 1s/step - loss: 0.3287 - acc: 0.8544
-Epoch 7/10
-299/299 [==============================] - 405s 1s/step - loss: 0.3029 - acc: 0.8647
-Epoch 8/10
-299/299 [==============================] - 408s 1s/step - loss: 0.2954 - acc: 0.8699
-Epoch 9/10
-299/299 [==============================] - 406s 1s/step - loss: 0.2715 - acc: 0.8791
-Epoch 10/10
-299/299 [==============================] - 407s 1s/step - loss: 0.2594 - acc: 0.8844
-<keras.callbacks.History object at 0x0000020ED6205780>
 
 
