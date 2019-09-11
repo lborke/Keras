@@ -25,11 +25,13 @@ from keras.optimizers import Adam
 
 ## Load
 # Load YAML and create model
-with open('model.yaml', 'r') as yaml_file: loaded_model_yaml = yaml_file.read()
+# with open('model.yaml', 'r') as yaml_file: loaded_model_yaml = yaml_file.read()
+with open('/storage/model.yaml', 'r') as yaml_file: loaded_model_yaml = yaml_file.read()
 
 model = model_from_yaml(loaded_model_yaml)
 # load weights into new model
-model.load_weights('model.h5')
+# model.load_weights('model.h5')
+model.load_weights('/storage/model.h5')
 
 # Print a summary representation of your model
 model.summary()
