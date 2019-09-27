@@ -1,7 +1,7 @@
 
 ### Alltours Stats
 
-## lokal: alle ~ 10.000 Bilder
+## lokal: alle 9568 Bilder
 Epoch 1/10
 299/299 [==============================] - 414s 1s/step - loss: 0.4908 - acc: 0.7925
 Epoch 2/10

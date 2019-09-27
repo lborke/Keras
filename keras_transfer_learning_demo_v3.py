@@ -89,7 +89,8 @@ model.fit_generator(generator=train_generator,
 test_datagen=ImageDataGenerator(preprocessing_function=preprocess_input)
 
 test_generator = test_datagen.flow_from_directory(
-    directory='./test/',
+    # directory='./test/',
+    directory='/storage/test/',
     target_size=(224, 224),
     color_mode="rgb",
     batch_size=1,
