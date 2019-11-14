@@ -35,9 +35,6 @@ https://towardsdatascience.com/u-net-b229b32b4a71
 https://www.kaggle.com/hsankesara/unet-image-segmentation
 https://github.com/zhixuhao/unet
 
-# >
-https://divamgupta.com/image-segmentation/2019/06/06/deep-learning-semantic-segmentation-keras.html
-https://github.com/divamgupta/image-segmentation-keras
 
 https://www.depends-on-the-definition.com/unet-keras-segmenting-images/
 https://towardsdatascience.com/understanding-semantic-segmentation-with-unet-6be4f42d4b47
