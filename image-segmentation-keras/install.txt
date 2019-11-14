@@ -1,0 +1,10 @@
+
+## Install Fragmente
+: requirements.txt
+numpy
+h5py
+tqdm
+
+
+pip install keras-segmentation
+

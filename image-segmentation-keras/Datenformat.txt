@@ -1,0 +1,22 @@
+
+## Datenformat
+
+dataset/
+	train_images/
+		- img0001.png
+		- img0002.png
+		- img0003.png
+	train_segmentation/
+		- img0001.png
+		- img0002.png
+		- img0003.png
+	val_images/
+		- img0004.png
+		- img0005.png
+		- img0006.png
+	val_segmentation/
+		- img0004.png
+		- img0005.png
+		- img0006.png
+
+
