@@ -1,6 +1,86 @@
 
-# mage-segmentation-keras
+### image-segmentation-keras
 https://divamgupta.com/image-segmentation/2019/06/06/deep-learning-semantic-segmentation-keras.html
 https://github.com/divamgupta/image-segmentation-keras
 
+## Terminologie
+input RGB images and the corresponding segmentation images
+Assign each class a unique ID. In the segmentation images, the pixel value should denote the class ID of the corresponding pixel
+For the segmentation maps, do not use the jpg format as jpg is lossy and the pixel values might change. Use bmp or png format instead.
+And of course, the size of the input image and the segmentation image should be the same.
+The standard input size is somewhere from 200x200 to 600x600.
+A model with a large input size consumes more GPU memory and also would take more time to train.
 
+
+## Install Fragmente
+: requirements.txt
+numpy
+h5py
+tqdm
+
+
+pip install keras-segmentation
+
+
+
+## run
+
+import keras_segmentation
+
+model = keras_segmentation.models.unet.vgg_unet(n_classes=51, input_height=416, input_width=608)
+
+
+model.train( 
+    train_images = "dataset_path/images_prepped_train/",
+    train_annotations = "dataset_path/annotations_prepped_train/",
+    checkpoints_path = "checkpoints/vgg_unet_1",
+	epochs=5
+)
+
+
+out = model.predict_segmentation(
+    inp = "dataset_path/images_prepped_test/0016E5_07965.png",
+    out_fname = "output.png"
+)
+
+
+
+## Datenformat
+
+dataset/
+	train_images/
+		- img0001.png
+		- img0002.png
+		- img0003.png
+	train_segmentation/
+		- img0001.png
+		- img0002.png
+		- img0003.png
+	val_images/
+		- img0004.png
+		- img0005.png
+		- img0006.png
+	val_segmentation/
+		- img0004.png
+		- img0005.png
+		- img0006.png
+
+
+# After preparing the dataset, you might want to verify it and also visualize it.
+
+python -m keras_segmentation verify_dataset \
+ --images_path="dataset_path/images_prepped_train/" \
+ --segs_path="dataset_path/annotations_prepped_train/"  \
+ --n_classes=50
+
+
+python -m keras_segmentation visualize_dataset \
+ --images_path="dataset_path/images_prepped_train/" \
+ --segs_path="dataset_path/annotations_prepped_train/"  \
+ --n_classes=50
+
+
+
+
+### Links/info
+https://d2l.ai/index.html
