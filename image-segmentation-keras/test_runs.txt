@@ -27,3 +27,45 @@ out = model.predict_segmentation(
 )
 
 
+#
+
+out = model.predict_segmentation(
+    inp = "sample_predict/bild1.jpg",
+    out_fname = "out/bild1.png"
+)
+
+
+out = model.predict_segmentation(
+    inp = "sample_predict/bild2.jpg",
+    out_fname = "out/bild2.png"
+)
+
+
+out = model.predict_segmentation(
+    inp = "sample_predict/bild3.jpg",
+    out_fname = "out/bild3.png"
+)
+
+
+out = model.predict_segmentation(
+    inp = "sample_predict/bild4.jpg",
+    out_fname = "out/bild4.png"
+)
+
+
+out = model.predict_segmentation(
+    inp = "sample_predict/bild5.jpg",
+    out_fname = "out/bild5.png"
+)
+
+
+out = model.predict_segmentation(
+    inp = "sample_predict/bild6.jpg",
+    out_fname = "out/bild6.png"
+)
+
+
+
+/data/sample_predict
+/data/out
+
