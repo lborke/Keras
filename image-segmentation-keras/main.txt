@@ -17,8 +17,6 @@ A model with a large input size consumes more GPU memory and also would take mor
 
 import keras_segmentation
 
-model = keras_segmentation.models.unet.vgg_unet(n_classes=51, input_height=416, input_width=608)
-
 
 model.train( 
     train_images = "dataset_path/images_prepped_train/",
@@ -53,3 +51,7 @@ python -m keras_segmentation visualize_dataset \
 
 ### Links/info
 https://d2l.ai/index.html
+
+https://www.learnopencv.com/install-opencv-docker-image-ubuntu-macos-windows/
+docker run --device=/dev/video0:/dev/video0 -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -p 5000:5000 -p 8888:8888 -it spmallick/opencv-docker:opencv /bin/bash
+
