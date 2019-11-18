@@ -71,24 +71,8 @@ out = model.predict_segmentation(
 )
 
 
+##
 
-/data/sample_predict
-/data/out
-
-
-from keras_segmentation.pretrained import pspnet_50_ADE_20K , pspnet_101_cityscapes, pspnet_101_voc12
-
-from keras_segmentation.predict import predict_multiple
-
-
-predict_arr = predict_multiple( 
-	model = pspnet_101_voc12(), 
-	inp_dir = "/data/sample_predict/", 
-	out_dir = "/data/out/" 
-)
-
-
-len(predict_arr)
-
-predict_arr[0].shape
+# /data/sample_predict
+# /data/out
 
