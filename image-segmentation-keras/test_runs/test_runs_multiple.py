@@ -17,6 +17,7 @@ from keras_segmentation.pretrained import pspnet_50_ADE_20K , pspnet_101_citysca
 from keras_segmentation.predict import predict_multiple
 
 
+# TF 2.0 error: module 'tensorflow_core._api.v2.image' has no attribute 'resize_images'
 predict_arr = predict_multiple( 
 	model = pspnet_101_voc12(), 
 	inp_dir = "/data/sample_predict/", 
@@ -24,6 +25,7 @@ predict_arr = predict_multiple(
 )
 
 
+# TF 2.0 geht auch
 predict_arr = predict_multiple( 
 	model = resnet_pspnet_VOC12_v0_1(), 
 	inp_dir = "/data/sample_predict/", 
@@ -31,6 +33,7 @@ predict_arr = predict_multiple(
 )
 
 
+# TF 2.0 error: module 'tensorflow_core._api.v2.image' has no attribute 'resize_images'
 predict_arr = predict_multiple( 
 	model = pspnet_50_ADE_20K(), 
 	inp_dir = "/data/sample_predict/", 
@@ -38,6 +41,7 @@ predict_arr = predict_multiple(
 )
 
 
+# TF 2.0 error: module 'tensorflow_core._api.v2.image' has no attribute 'resize_images'
 predict_arr = predict_multiple( 
 	model = pspnet_101_cityscapes(), 
 	inp_dir = "/data/sample_predict/", 

@@ -36,8 +36,10 @@ apt-get install -y libsm6 libxext6 libxrender-dev
 
 pip install opencv-python
 
+
 # keras
 pip install --upgrade keras
+
 
 # keras-segmentation
 apt install git
