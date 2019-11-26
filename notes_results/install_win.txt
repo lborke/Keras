@@ -57,3 +57,10 @@ Author-email: None
 License: BSD
 Location: c:\users\borke\appdata\local\programs\python\python37\lib\site-packages
 Requires: pytz, numpy, python-dateutil
+
+
+# extra
+pip install matplotlib
+
+pip show matplotlib
+
