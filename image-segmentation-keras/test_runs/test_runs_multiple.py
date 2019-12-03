@@ -25,6 +25,15 @@ predict_arr = predict_multiple(
 )
 
 
+# temp
+predict_arr = predict_multiple( 
+	model = pspnet_101_voc12(), 
+	inp_dir = "/data/sample2/", 
+	out_dir = "/data/out/" 
+)
+
+
+
 # TF 2.0 geht auch
 predict_arr = predict_multiple( 
 	model = resnet_pspnet_VOC12_v0_1(), 
@@ -56,4 +65,15 @@ predict_arr = predict_multiple(
 len(predict_arr)
 
 predict_arr[0].shape
+
+
+##
+# https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files
+
+# Rename all *.txt to *.text
+for f in *.JPG; do 
+    mv -- "$f" "${f%.JPG}.jpg"
+done
+
+
 
