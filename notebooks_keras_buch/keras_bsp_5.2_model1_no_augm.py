@@ -68,7 +68,8 @@ for data_batch, labels_batch in train_generator:
 history = model.fit_generator(
       train_generator,
       steps_per_epoch=100,
-      epochs=30,
+      # epochs=30,
+      epochs=2,
       validation_data=validation_generator,
       validation_steps=50)
 
@@ -76,6 +77,8 @@ history = model.fit_generator(
 # ca. 35 sek pro Epoche auf Ryzen
 # Epoch 30/30 100/100 [==============================] - 36s 356ms/step - loss: 0.0312 - acc: 0.9900 - val_loss: 1.0706 - val_acc: 0.7370
 
-model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_1.h5')
+# model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_1.h5')
+
+model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_1_test.h5')
 
 
