@@ -167,5 +167,38 @@ model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test_25ep.
 
 
 
+## model Fine-tuning
+
+from keras.models import load_model
+
+# https://stackoverflow.com/questions/49195189/error-loading-the-saved-optimizer-keras-python-raspberry
+
+model = load_model('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test_25ep.h5')
+
+model.summary()
+
+
+# conv_base.trainable = True
+
+for layer in model.layers:
+    print(layer.name)
+
+
+model.layers[0].name
+
+model.layers[0].trainable = False
+
+
+set_trainable = False
+for layer in conv_base.layers:
+    if layer.name == 'block5_conv1':
+        set_trainable = True
+    if set_trainable:
+        layer.trainable = True
+    else:
+        layer.trainable = False
+
+
+
 
 
