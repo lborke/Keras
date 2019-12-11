@@ -109,8 +109,11 @@ history = model.fit_generator(
 # alltours
 # ca. 220 sek pro Epoche auf Ryzen
 # Epoch 2/2 100/100 - 224s 2s/step - loss: 0.6262 - acc: 0.7287 - val_loss: 0.5765 - val_acc: 0.7540
+# Epoch 15/15 100/100 - 224s 2s/step - loss: 0.4618 - acc: 0.8153 - val_loss: 0.4897 - val_acc: 0.7727
 
 model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v1_2ep.h5')
+
+model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v2_17ep.h5')
 
 
 ## Model evaluation
