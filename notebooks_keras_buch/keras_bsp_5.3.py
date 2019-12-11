@@ -149,7 +149,8 @@ history = model.fit_generator(
       train_generator,
       steps_per_epoch=100,
       # epochs=30,
-      epochs=15,
+      # epochs=15,
+      epochs=10,
       validation_data=validation_generator,
       validation_steps=50,
       verbose=1)
@@ -157,7 +158,14 @@ history = model.fit_generator(
 
 # ca. 150 sek pro Epoche auf Ryzen
 # Epoch 2/2 - 149s - loss: 0.4621 - acc: 0.8065 - val_loss: 0.3580 - val_acc: 0.8740
+# Epoch 15/15 100/100 - 150s 2s/step - loss: 0.3151 - acc: 0.8625 - val_loss: 0.2466 - val_acc: 0.9010
+# (weitere 10 Epochen [15+10]) Epoch 10/10 100/100 - 151s 2s/step - loss: 0.2945 - acc: 0.8720 - val_loss: 0.2365 - val_acc: 0.9070
 
-model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test.h5')
+# model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test_15ep.h5')
+
+model.save('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test_25ep.h5')
+
+
+
 
 
