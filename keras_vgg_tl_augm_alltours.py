@@ -41,18 +41,24 @@ model.add(layers.Flatten())
 model.add(layers.Dense(256, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
 
+
 # model FL 1024*1024*512
-
-
+model = models.Sequential()
+model.add(conv_base)
+model.add(layers.Flatten())
+model.add(layers.Dense(1024, activation='relu'))
+model.add(layers.Dense(1024, activation='relu'))
+model.add(layers.Dense(512, activation='relu'))
+model.add(layers.Dense(3, activation='softmax'))
 
 
 model.summary()
 
 print('This is the number of trainable weights before freezing the conv base:', len(model.trainable_weights))
-
 conv_base.trainable = False
-
 print('This is the number of trainable weights after freezing the conv base:', len(model.trainable_weights))
+
+model.summary()
 
 
 train_datagen = ImageDataGenerator(
@@ -100,8 +106,8 @@ history = model.fit_generator(
       train_generator,
       steps_per_epoch=100,
       # epochs=30,
-      epochs=15,
-      # epochs=2,
+      # epochs=15,
+      epochs=1,
       validation_data=validation_generator,
       validation_steps=50,
       verbose=1)
@@ -112,10 +118,15 @@ history = model.fit_generator(
 # Epoch 15/15 100/100 - 150s 2s/step - loss: 0.3151 - acc: 0.8625 - val_loss: 0.2466 - val_acc: 0.9010
 # (weitere 10 Epochen [15+10]) Epoch 10/10 100/100 - 151s 2s/step - loss: 0.2945 - acc: 0.8720 - val_loss: 0.2365 - val_acc: 0.9070
 
-# alltours
+## alltours: model naiv
 # ca. 220 sek pro Epoche auf Ryzen
 # Epoch 2/2 100/100 - 224s 2s/step - loss: 0.6262 - acc: 0.7287 - val_loss: 0.5765 - val_acc: 0.7540
 # Epoch 15/15 100/100 - 224s 2s/step - loss: 0.4618 - acc: 0.8153 - val_loss: 0.4897 - val_acc: 0.7727
+
+# alltours: model FL 1024*1024*512
+# ca. 234 sek pro Epoche auf Ryzen
+# Epoch 1/1 100/100 - 234s 2s/step - loss: 0.7356 - acc: 0.6787 - val_loss: 0.5614 - val_acc: 0.7480
+
 
 model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v1_2ep.h5')
 
