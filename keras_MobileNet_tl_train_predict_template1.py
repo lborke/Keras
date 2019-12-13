@@ -14,10 +14,9 @@ import keras
 
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras.applications import MobileNet
-# from keras.preprocessing import image
 from keras.applications.mobilenet import preprocess_input
 from keras.preprocessing.image import ImageDataGenerator
-from keras.models import Model, model_from_yaml
+from keras.models import Model
 from keras.optimizers import Adam
 
 
@@ -49,9 +48,9 @@ model.summary()
 
 
 # local path: klein
-train_dir = './train/'
+# train_dir = './train/'
 # paperspace path
-train_dir = '/storage/train/'
+# train_dir = '/storage/train/'
 
 # local path: BigSetFull
 train_dir = 'T:/temp_data/alltours/train'
@@ -59,7 +58,7 @@ validation_dir = 'T:/temp_data/alltours/validation'
 test_dir = 'T:/temp_data/alltours/test'
 
 
-train_datagen = ImageDataGenerator(preprocessing_function=preprocess_input) #included in our dependencies
+train_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
 test_datagen = ImageDataGenerator(rescale=1./255)
 
@@ -117,6 +116,5 @@ test_loss, test_acc = model.evaluate_generator(test_generator, steps=50)
 
 test_loss,
 test_acc
-
 
 
