@@ -4,15 +4,20 @@
 ### clean run
 # tested on Python 3.7.3 64 bit
 
-import os
-import keras
+# import os
 
 # import pillow
-from PIL import Image
+# from PIL import Image
 
-# for prediction
-import numpy as np
-import pandas as pd
+## for prediction
+# import numpy as np
+# import pandas as pd
+
+# [opt] disable warnings
+import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
+import keras
 
 from keras.layers import Dense,GlobalAveragePooling2D
 from keras.applications import MobileNet
@@ -47,6 +52,9 @@ for layer in model.layers[87:]:
     layer.trainable=True
 
 
+model.summary()
+
+
 train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input) #included in our dependencies
 
 
@@ -54,7 +62,7 @@ train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input) #inclu
 training_data_path = './train/'
 
 # local path: BigSetFull
-training_data_path = 'D:/TEMP/alltours/BigSetFull'
+training_data_path = 'T:/temp_data/alltours/train'
 
 # paperspace path
 training_data_path = '/storage/train/'
@@ -79,8 +87,8 @@ model.fit_generator(generator=train_generator,
                    steps_per_epoch=step_size_train,
                    # use_multiprocessing=True,
                    # workers = 8,
-                   # epochs = 10)
-                   epochs = 30)
+                   epochs = 1)
+                   # epochs = 30)
                    # epochs = 100)
 
 

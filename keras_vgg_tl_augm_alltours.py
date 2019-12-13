@@ -1,6 +1,5 @@
 
-## opt
-# disable warnings
+# [opt] disable warnings
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
@@ -34,11 +33,18 @@ conv_base = VGG16(weights='imagenet',
 conv_base.summary()
 
 
+## FC Base
+# model naiv
 model = models.Sequential()
 model.add(conv_base)
 model.add(layers.Flatten())
 model.add(layers.Dense(256, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
+
+# model FL 1024*1024*512
+
+
+
 
 model.summary()
 
