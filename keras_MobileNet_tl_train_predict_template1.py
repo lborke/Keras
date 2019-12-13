@@ -5,7 +5,6 @@
 # tested on Python 3.7.3 64 bit
 
 # import os
-
 # import pillow
 # from PIL import Image
 
@@ -19,7 +18,7 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 import keras
 
-from keras.layers import Dense,GlobalAveragePooling2D
+from keras.layers import Dense, GlobalAveragePooling2D
 from keras.applications import MobileNet
 # from keras.preprocessing import image
 from keras.applications.mobilenet import preprocess_input
@@ -77,12 +76,11 @@ train_generator=train_datagen.flow_from_directory(training_data_path,
 
 
 model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
-# Adam optimizer; loss function will be categorical cross entropy; evaluation metric will be accuracy
 
 step_size_train = train_generator.n//train_generator.batch_size
+step_size_train
 
 
-# Start Training !
 model.fit_generator(generator=train_generator,
                    steps_per_epoch=step_size_train,
                    # use_multiprocessing=True,
@@ -101,7 +99,7 @@ test_generator = test_datagen.flow_from_directory(
     directory='/storage/test/',
     target_size=(224, 224),
     color_mode="rgb",
-    batch_size=1,
+    batch_size=32,
     class_mode=None,
     shuffle=False
 )
