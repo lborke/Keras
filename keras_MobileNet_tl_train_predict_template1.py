@@ -5,12 +5,6 @@
 # tested on Python 3.7.3 64 bit
 
 # import os
-# import pillow
-# from PIL import Image
-
-## for prediction
-# import numpy as np
-# import pandas as pd
 
 # [opt] disable warnings
 import tensorflow as tf
@@ -54,124 +48,75 @@ for layer in model.layers[87:]:
 model.summary()
 
 
-train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input) #included in our dependencies
-
-
 # local path: klein
-training_data_path = './train/'
+train_dir = './train/'
+# paperspace path
+train_dir = '/storage/train/'
 
 # local path: BigSetFull
-training_data_path = 'T:/temp_data/alltours/train'
-
-# paperspace path
-training_data_path = '/storage/train/'
-
-
-train_generator=train_datagen.flow_from_directory(training_data_path,
-                                                 target_size=(224,224),
-                                                 color_mode='rgb',
-                                                 batch_size=32,
-                                                 class_mode='categorical',
-                                                 shuffle=True)
+train_dir = 'T:/temp_data/alltours/train'
+validation_dir = 'T:/temp_data/alltours/validation'
+test_dir = 'T:/temp_data/alltours/test'
 
 
-model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
+train_datagen = ImageDataGenerator(preprocessing_function=preprocess_input) #included in our dependencies
+
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+
+train_generator=train_datagen.flow_from_directory(
+        train_dir,
+        target_size=(224,224),
+        batch_size=32,
+        class_mode='categorical',
+        color_mode='rgb',
+        shuffle=True)
+
+
+validation_generator = test_datagen.flow_from_directory(
+        validation_dir,
+        target_size=(224,224),
+        batch_size=32,
+        class_mode='categorical')
+
+
+model.compile(loss='categorical_crossentropy',
+              optimizer='Adam',
+              metrics=['acc'])
+
 
 step_size_train = train_generator.n//train_generator.batch_size
 step_size_train
 
 
-model.fit_generator(generator=train_generator,
-                   steps_per_epoch=step_size_train,
-                   # use_multiprocessing=True,
-                   # workers = 8,
-                   epochs = 1)
-                   # epochs = 30)
-                   # epochs = 100)
+history = model.fit_generator(
+               train_generator,
+               steps_per_epoch = step_size_train,
+               epochs = 1,
+               # epochs = 30)
+               # epochs = 100)
+               validation_data=validation_generator,
+               validation_steps=47,
+               verbose=1)
 
 
+# ca. 188 sek pro Epoche auf Ryzen
+# Epoch 1/1 93/93 - 188s 2s/step - loss: 0.5926 - acc: 0.7618 - val_loss: 0.6895 - val_acc: 0.7160
 
-## Test the model
-test_datagen=ImageDataGenerator(preprocessing_function=preprocess_input)
+
+# We can now finally evaluate this model on the test data:
 
 test_generator = test_datagen.flow_from_directory(
-    # directory='./test/',
-    directory='/storage/test/',
-    target_size=(224, 224),
-    color_mode="rgb",
-    batch_size=32,
-    class_mode=None,
-    shuffle=False
-)
-
-STEP_SIZE_TEST=test_generator.n//test_generator.batch_size
-test_generator.reset()
-pred=model.predict_generator(test_generator,
-                            steps=STEP_SIZE_TEST,
-                            verbose=1)
+        test_dir,
+        target_size=(224,224),
+        batch_size=32,
+        class_mode='categorical')
 
 
-predicted_class_indices=np.argmax(pred,axis=1)
+test_loss, test_acc = model.evaluate_generator(test_generator, steps=50)
 
-# train_datagen wird benötigt
-labels = (train_generator.class_indices)
-labels = dict((v,k) for k,v in labels.items())
-
-# oder als Dict definieren (gleicher Task)
-labels = {0: 'Detailbilder', 1: 'Hauptbilder', 2: 'Zimmerbilder'}
-
-predictions = [labels[k] for k in predicted_class_indices]
-
-
-filenames=test_generator.filenames
-results=pd.DataFrame({"Filename":filenames,
-                      "Predictions":predictions})
-
-# save to csv
-results.to_csv("results.csv",index=False)
-
-
-
-## Save
-# serialize model to JSON
-model_json = model.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
-
-
-# serialize model to YAML
-model_yaml = model.to_yaml()
-with open('model.yaml', 'w') as yaml_file:
-    yaml_file.write(model_yaml)
-
-
-# serialize weights to HDF5
-model.save_weights("model.h5")
-# print("Saved model to disk")
-
-
-## Load
-# Load YAML and create model
-with open('model.yaml', 'r') as yaml_file: loaded_model_yaml = yaml_file.read()
-
-model = model_from_yaml(loaded_model_yaml)
-# load weights into new model
-model.load_weights('model.h5')
-
-# Print a summary representation of your model
-model.summary()
-
-
-
-
-### check
-
-# Evaluate accuracy
-test_loss, test_acc = model.evaluate(test_images, test_labels)
-
-
-predictions_array = model.predict(img)
-
+test_loss,
+test_acc
 
 
 
