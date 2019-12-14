@@ -27,6 +27,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 import os
 
+
 base_dir = 'T:\\temp_data\\alltours'
 
 train_dir = os.path.join(base_dir, 'train')
@@ -119,9 +120,9 @@ model.compile(loss='categorical_crossentropy',
 history = model.fit_generator(
       train_generator,
       steps_per_epoch=100,
-      epochs=1,
+      # epochs=1,
       # epochs=30,
-      # epochs=15,
+      epochs=10,
       validation_data=validation_generator,
       validation_steps=50,
       verbose=1)
@@ -141,11 +142,21 @@ history = model.fit_generator(
 # ca. 234 sek pro Epoche auf Ryzen
 # Epoch 1/1 100/100 - 234s 2s/step - loss: 0.7356 - acc: 0.6787 - val_loss: 0.5614 - val_acc: 0.7480
 
+## 2060 SU
+# alltours: model FL 1024*1024*512
+# ca. 66 sek pro Epoche auf 2060 SU
+# Epoch 10/10 100/100 - 65s 650ms/step - loss: 0.4708 - acc: 0.8070 - val_loss: 0.4965 - val_acc: 0.7840
+# weitere 10 Ep. auf dem gleichen Modell (10+10)
+# Epoch 10/10 100/100 - 65s 652ms/step - loss: 0.4386 - acc: 0.8240 - val_loss: 0.4763 - val_acc: 0.7840
+
 
 
 model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v1_2ep.h5')
 
 model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v2_17ep.h5')
+
+# ubuntu/docker
+model.save('/data/alltours_vgg_tl_augm_ubuntu_20ep.h5')
 
 
 ## Model evaluation
@@ -155,7 +166,9 @@ from tensorflow.keras.models import load_model
 
 # https://stackoverflow.com/questions/49195189/error-loading-the-saved-optimizer-keras-python-raspberry
 
-model = load_model('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test_25ep.h5')
+# model = load_model('T:\\temp_data\\cats_and_dogs_small\\cats_and_dogs_small_3_test_25ep.h5')
+
+model = load_model('/data/alltours_vgg_tl_augm_ubuntu_20ep.h5')
 
 model.summary()
 
@@ -166,13 +179,21 @@ model.summary()
 test_generator = test_datagen.flow_from_directory(
         test_dir,
         target_size=(150, 150),
-        batch_size=20,
+        batch_size=32,
         class_mode='categorical')
 
 
-test_loss, test_acc = model.evaluate_generator(test_generator, steps=50)
+test_loss, test_acc = model.evaluate_generator(test_generator, steps=30)
 
 test_loss,
 test_acc
+
+
+# 10 EP. alltours: model FL 1024*1024*512
+# 0.659375
+
+# 20 EP. alltours: model FL 1024*1024*512
+# 0.709375
+
 
 
