@@ -1,17 +1,29 @@
 
-# [opt] disable warnings
+# -v /media/lukas/TeraTest/temp_data/alltours:/data
+sudo docker start -ai fc0697014ad5
+
+# >>> läuft!
+
 import tensorflow as tf
+
+# 2060 Su
+gpus = tf.config.experimental.list_physical_devices('GPU')
+
+tf.config.experimental.set_memory_growth(gpus[0], True)
+# END  2060 Su
+
+# [opt] disable warnings
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
 
 ## main
-from keras.applications import VGG16
+from tensorflow.keras.applications import VGG16
 
-from keras import models
-from keras import layers
-from keras import optimizers
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras import models
+from tensorflow.keras import layers
+from tensorflow.keras import optimizers
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 import os
 
@@ -20,6 +32,11 @@ base_dir = 'T:\\temp_data\\alltours'
 train_dir = os.path.join(base_dir, 'train')
 validation_dir = os.path.join(base_dir, 'validation')
 test_dir = os.path.join(base_dir, 'test')
+
+# local path Ubuntu/Docker: BigSetFull
+train_dir = '/data/train'
+validation_dir = '/data/validation'
+test_dir = '/data/test'
 
 
 conv_base = VGG16(weights='imagenet',
@@ -125,6 +142,7 @@ history = model.fit_generator(
 # Epoch 1/1 100/100 - 234s 2s/step - loss: 0.7356 - acc: 0.6787 - val_loss: 0.5614 - val_acc: 0.7480
 
 
+
 model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v1_2ep.h5')
 
 model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v2_17ep.h5')
@@ -133,7 +151,7 @@ model.save('T:\\temp_data\\alltours\\vgg_tl_augm_v2_17ep.h5')
 ## Model evaluation
 
 
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 # https://stackoverflow.com/questions/49195189/error-loading-the-saved-optimizer-keras-python-raspberry
 
@@ -156,8 +174,5 @@ test_loss, test_acc = model.evaluate_generator(test_generator, steps=50)
 
 test_loss,
 test_acc
-
-
-print('test acc:', test_acc)
 
 
